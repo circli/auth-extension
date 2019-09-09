@@ -1,0 +1,27 @@
+{
+  "name": "circli/auth-extension",
+  "type": "circli-extension",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Andreas Sundqvist",
+      "email": "andreas@oak-valley.se"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "psr/http-message": "^1.0",
+    "psr/http-server-middleware": "^1.0",
+    "psr/event-dispatcher": "^1.0",
+    "polus/adr": "~4.0"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "Circli\\Extension\\Auth\\": "src/"
+    }
+  }
+}
