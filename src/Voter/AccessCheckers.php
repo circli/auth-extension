@@ -2,8 +2,6 @@
 
 namespace Circli\Extension\Auth\Voter;
 
-use Circli\Extension\Auth\Auth;
-use Circli\Extension\Auth\NullAuth;
 use Circli\Extension\Auth\Repositories\Objects\AuthObject;
 use Circli\Extension\Auth\Repositories\Objects\NullAuthObject;
 use Psr\EventDispatcher\ListenerProviderInterface;
@@ -32,8 +30,8 @@ final class AccessCheckers implements ListenerProviderInterface
         if ($event instanceof AccessRequestEventInterface) {
             $authObject = $this->authObject ?? new NullAuthObject();
             foreach ($this->voters as $voter) {
+                $voter->setAuthObject($authObject);
                 if ($voter->supports($event)) {
-                    $voter->setAuthObject($authObject);
                     yield $voter;
                 }
             }
