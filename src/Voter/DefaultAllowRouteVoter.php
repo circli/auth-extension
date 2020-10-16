@@ -19,7 +19,7 @@ final class DefaultAllowRouteVoter implements VoterInterface
         }
     }
 
-	public function setAuthObject(AuthObject $object): void
-	{
-	}
+    public function setAuthObject(AuthObject $object): void
+    {
+    }
 }

@@ -6,7 +6,7 @@ use Circli\Extension\Auth\Repositories\Objects\AuthObject;
 
 interface VoterInterface
 {
-	public function setAuthObject(AuthObject $object): void;
+    public function setAuthObject(AuthObject $object): void;
 
     public function supports(AccessRequestEventInterface $accessRequest): bool;
 

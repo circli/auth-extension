@@ -8,28 +8,28 @@ use Circli\Extension\Auth\Voter\AccessRequestEventInterface;
 
 final class NullAuth implements Auth
 {
-	public function isAllowed(string $key): bool
-	{
-		return false;
-	}
+    public function isAllowed(string $key): bool
+    {
+        return false;
+    }
 
-	public function isOwner(object $obj): bool
-	{
-		return false;
-	}
+    public function isOwner(object $obj): bool
+    {
+        return false;
+    }
 
-	public function isAuthenticated(): bool
-	{
-		return false;
-	}
+    public function isAuthenticated(): bool
+    {
+        return false;
+    }
 
-	public function haveAccess(AccessRequestEventInterface $key): bool
-	{
-		return false;
-	}
+    public function haveAccess(AccessRequestEventInterface $key): bool
+    {
+        return false;
+    }
 
-	public function getObject(): AuthObject
-	{
-		return new NullAuthObject();
-	}
+    public function getObject(): AuthObject
+    {
+        return new NullAuthObject();
+    }
 }

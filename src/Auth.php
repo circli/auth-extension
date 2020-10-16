@@ -8,8 +8,9 @@ use Circli\Extension\Auth\Voter\AccessRequestEventInterface;
 
 interface Auth extends AclInterface
 {
-	public function getObject(): AuthObject;
+    public function getObject(): AuthObject;
 
     public function isAuthenticated(): bool;
+
     public function haveAccess(AccessRequestEventInterface $key): bool;
 }

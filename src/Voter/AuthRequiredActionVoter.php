@@ -2,7 +2,6 @@
 
 namespace Circli\Extension\Auth\Voter;
 
-use Circli\Extension\Auth\Auth;
 use Circli\Extension\Auth\Events\RouteAccessRequest;
 use Circli\Extension\Auth\Repositories\Objects\AuthObject;
 
@@ -11,9 +10,10 @@ final class AuthRequiredActionVoter implements VoterInterface
     private $actions = [];
 
     public function setAuthObject(AuthObject $object): void
-	{}
+    {
+    }
 
-	public function addAction(string $action): void
+    public function addAction(string $action): void
     {
         $this->actions[] = $action;
     }
