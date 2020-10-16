@@ -4,8 +4,7 @@ namespace Circli\Extension\Auth\Events;
 
 final class OwnerAccessRequest extends AbstractAccessRequest
 {
-    /** @var object */
-    private $document;
+    private object $document;
 
     public function __construct(object $document)
     {

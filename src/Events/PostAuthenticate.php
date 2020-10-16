@@ -6,8 +6,7 @@ use Circli\Extension\Auth\Auth;
 
 final class PostAuthenticate
 {
-    /** @var Auth */
-    private $auth;
+    private Auth $auth;
 
     public function __construct(Auth $auth)
     {

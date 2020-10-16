@@ -9,15 +9,14 @@ use Psr\EventDispatcher\ListenerProviderInterface;
 final class AccessCheckers implements ListenerProviderInterface
 {
     /** @var VoterInterface[] */
-    private $voters = [];
-    /** @var AuthObject|null */
-    private $authObject;
+    private array $voters = [];
+    private ?AuthObject $authObject = null;
 
     public function addVoter(VoterInterface $voter): void
     {
         $this->voters[] = $voter;
     }
-    
+
     /**
      * @param object $event
      *   An event for which to return the relevant listeners.

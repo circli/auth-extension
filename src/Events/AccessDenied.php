@@ -9,12 +9,9 @@ final class AccessDenied
     public const OWNER = 'owner';
     public const PERMISSION = 'permission';
 
-    /** @var AuthObject */
-    private $object;
-    /** @var string */
-    private $type;
-    /** @var string */
-    private $value;
+    private AuthObject $object;
+    private string $type;
+    private string $value;
 
     public function __construct(AuthObject $object, string $type, string $value)
     {

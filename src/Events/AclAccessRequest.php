@@ -4,8 +4,7 @@ namespace Circli\Extension\Auth\Events;
 
 final class AclAccessRequest extends AbstractAccessRequest
 {
-    /** @var string */
-    private $key;
+    private string $key;
 
     public function __construct(string $key)
     {
