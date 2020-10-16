@@ -19,11 +19,17 @@
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
-        "phpstan/phpstan": "^0.12.49"
+        "phpstan/phpstan": "^0.12.49",
+        "phpunit/phpunit": "^9.4"
     },
     "autoload": {
         "psr-4": {
             "Circli\\Extension\\Auth\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
         }
     }
 }
