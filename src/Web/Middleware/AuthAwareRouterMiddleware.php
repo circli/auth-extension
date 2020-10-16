@@ -6,9 +6,9 @@ use Circli\Extension\Auth\Auth;
 use Circli\Extension\Auth\Events\RouteAccessRequest;
 use Circli\Extension\Auth\Web\AccessDeniedActionInterface;
 use Circli\Extension\Auth\Web\RequestAttributeKeys;
-use Polus\Adr\Interfaces\ActionInterface;
-use Polus\Router\RouteInterface;
-use Polus\Router\RouterDispatcherInterface;
+use Polus\Adr\Interfaces\Action;
+use Polus\Router\Route;
+use Polus\Router\RouterDispatcher;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -16,8 +16,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class AuthAwareRouterMiddleware implements MiddlewareInterface
 {
-    /** @var AccessDeniedActionInterface */
-    private $accessDeniedAction;
+    private AccessDeniedActionInterface $accessDeniedAction;
 
     public function __construct(AccessDeniedActionInterface $accessDeniedAction)
     {
@@ -27,18 +26,16 @@ class AuthAwareRouterMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $route = $request->getAttribute('route');
-        if ($route && $route->getStatus() === RouterDispatcherInterface::FOUND) {
+        if ($route && $route->getStatus() === RouterDispatcher::FOUND) {
             /** @var Auth $auth */
             $auth = $request->getAttribute(RequestAttributeKeys::AUTH);
             if (!$auth->haveAccess(new RouteAccessRequest($route, $auth))) {
                 $request = $request->withAttribute('denied_route', $route);
-                $newRoute = new class($this->accessDeniedAction, $route) implements RouteInterface {
-                    /** @var ActionInterface */
-                    private $action;
-                    /** @var RouteInterface */
-                    private $route;
+                $newRoute = new class($this->accessDeniedAction, $route) implements Route {
+                    private Action $action;
+                    private Route $route;
 
-                    public function __construct(ActionInterface $action, RouteInterface $route)
+                    public function __construct(Action $action, Route $route)
                     {
                         $this->action = $action;
                         $this->route = $route;
@@ -46,7 +43,7 @@ class AuthAwareRouterMiddleware implements MiddlewareInterface
 
                     public function getStatus(): int
                     {
-                        return RouterDispatcherInterface::FOUND;
+                        return RouterDispatcher::FOUND;
                     }
 
                     public function getAllows(): array

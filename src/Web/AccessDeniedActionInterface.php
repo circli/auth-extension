@@ -2,8 +2,8 @@
 
 namespace Circli\Extension\Auth\Web;
 
-use Polus\Adr\Interfaces\ActionInterface;
+use Polus\Adr\Interfaces\Action;
 
-interface AccessDeniedActionInterface extends ActionInterface
+interface AccessDeniedActionInterface extends Action
 {
 }

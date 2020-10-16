@@ -3,22 +3,20 @@
 namespace Circli\Extension\Auth\Events;
 
 use Circli\Extension\Auth\Auth;
-use Polus\Router\RouteInterface;
+use Polus\Router\Route;
 
 final class RouteAccessRequest extends AbstractAccessRequest
 {
-    /** @var RouteInterface */
-    private $route;
-    /** @var Auth */
-    private $auth;
+    private Route $route;
+    private Auth $auth;
 
-    public function __construct(RouteInterface $route, Auth $auth)
+    public function __construct(Route $route, Auth $auth)
     {
         $this->route = $route;
         $this->auth = $auth;
     }
 
-    public function getRoute(): RouteInterface
+    public function getRoute(): Route
     {
         return $this->route;
     }
