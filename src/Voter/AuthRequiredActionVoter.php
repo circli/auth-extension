@@ -7,7 +7,12 @@ use Circli\Extension\Auth\Repositories\Objects\AuthObject;
 
 final class AuthRequiredActionVoter implements VoterInterface
 {
-    private $actions = [];
+    /**
+     * List of required interfaces
+     *
+     * @var string[]
+     */
+    private array $actions = [];
 
     public function setAuthObject(AuthObject $object): void
     {

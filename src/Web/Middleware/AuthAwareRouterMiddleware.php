@@ -46,21 +46,27 @@ class AuthAwareRouterMiddleware implements MiddlewareInterface
                         return RouterDispatcher::FOUND;
                     }
 
+                    /**
+                     * @return string[]
+                     */
                     public function getAllows(): array
                     {
                         return ['GET', 'POST'];
                     }
 
-                    public function getHandler()
+                    public function getHandler(): Action
                     {
                         return $this->action;
                     }
 
-                    public function getMethod()
+                    public function getMethod(): string
                     {
                         return $this->route->getMethod();
                     }
 
+                    /**
+                     * @return array<string, mixed>
+                     */
                     public function getAttributes(): array
                     {
                         return $this->route->getAttributes();

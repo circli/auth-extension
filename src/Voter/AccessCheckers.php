@@ -20,7 +20,7 @@ final class AccessCheckers implements ListenerProviderInterface
     /**
      * @param object $event
      *   An event for which to return the relevant listeners.
-     * @return iterable[callable]
+     * @return iterable<callable>
      *   An iterable (array, iterator, or generator) of callables.  Each
      *   callable MUST be type-compatible with $event.
      */
