@@ -11,9 +11,13 @@ final class AccessDenied
 
     private AuthObject $object;
     private string $type;
-    private string $value;
+    /** @var mixed */
+    private $value;
 
-    public function __construct(AuthObject $object, string $type, string $value)
+    /**
+     * @param mixed $value
+     */
+    public function __construct(AuthObject $object, string $type, $value)
     {
         $this->object = $object;
         $this->type = $type;
@@ -30,7 +34,10 @@ final class AccessDenied
         return $this->type;
     }
 
-    public function getValue(): string
+    /**
+     * @return mixed
+     */
+    public function getValue()
     {
         return $this->value;
     }
