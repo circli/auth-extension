@@ -29,7 +29,7 @@ class AuthAwareRouterMiddleware implements MiddlewareInterface
         if ($route && $route->getStatus() === RouterDispatcher::FOUND) {
             /** @var Auth $auth */
             $auth = $request->getAttribute(RequestAttributeKeys::AUTH);
-            if (!$auth->haveAccess(new RouteAccessRequest($route, $auth))) {
+            if (!$auth->haveAccess(new RouteAccessRequest($route, $auth, $request))) {
                 $request = $request->withAttribute('denied_route', $route);
                 $newRoute = new class($this->accessDeniedAction, $route) implements Route {
                     private Action $action;
