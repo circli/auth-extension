@@ -9,6 +9,7 @@ use Circli\Extension\Auth\Web\RequestAttributeKeys;
 use Polus\Adr\Interfaces\Action;
 use Polus\Router\Route;
 use Polus\Router\RouterDispatcher;
+use Polus\Router\RouterMiddleware;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -25,7 +26,7 @@ class AuthAwareRouterMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $route = $request->getAttribute('route');
+        $route = $request->getAttribute(RouterMiddleware::ATTRIBUTE_KEY);
         if ($route && $route->getStatus() === RouterDispatcher::FOUND) {
             /** @var Auth $auth */
             $auth = $request->getAttribute(RequestAttributeKeys::AUTH);
@@ -72,7 +73,7 @@ class AuthAwareRouterMiddleware implements MiddlewareInterface
                         return $this->route->getAttributes();
                     }
                 };
-                $request = $request->withAttribute('route', $newRoute);
+                $request = $request->withAttribute(RouterMiddleware::ATTRIBUTE_KEY, $newRoute);
             }
         }
 

@@ -6,7 +6,7 @@ use Circli\Extension\Auth\Voter\AccessRequestEventInterface;
 
 class AbstractAccessRequest implements AccessRequestEventInterface
 {
-    protected ?bool $allow;
+    protected ?bool $allow = null;
 
     public function allow(): void
     {
